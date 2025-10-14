@@ -1,5 +1,7 @@
 # PanierApp
 
+PanierApp is a modern Angular application that allows users to browse articles, filter by category, and add products to a cart with automatic tax and total price calculations. It is designed to be accessible, responsive, and easy to maintain.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
 
 ## Development server
@@ -11,6 +13,21 @@ ng serve
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+## Project Structure
+
+- ArticlesComponent: Displays available articles with category filtering
+- ArticleCardComponent: Individual article card with add-to-cart functionality
+- PanierService: Centralized cart management (add, remove, calculate)
+- PanierComponent: Displays cart content and total summary
+
+## Key Features
+
+- Dynamic filtering of articles by category
+- Add-to-cart with quantity management
+- Tax calculation based on applicable rules
+- Display of TTC price per item and overall total
+- Enhanced accessibility with ARIA roles and keyboard navigation
 
 ## Code scaffolding
 
