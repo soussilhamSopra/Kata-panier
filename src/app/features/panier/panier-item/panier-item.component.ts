@@ -3,11 +3,12 @@ import { Component, Input } from '@angular/core';
 import { PanierService } from '../../../shared/service/panier.service';
 import { Article } from '../../../models/article';
 import { PanierItem } from '../../../models/panier-item';
+import { NomArticlePipe } from '../../../shared/pipes/nom-article.pipe';
 
 @Component({
   selector: 'app-panier-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NomArticlePipe],
   templateUrl: './panier-item.component.html',
   styleUrls: ['./panier-item.scss'],
 })
