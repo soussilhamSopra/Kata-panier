@@ -1,0 +1,37 @@
+<!-- Barre de filtre -->
+<div class="filtre-barre" role="form" aria-label="Filtrer les articles par catégorie">
+  <div class="filtre">
+    <label for="filtre-categorie">Filtre : catégorie</label>
+    <select
+      id="filtre-categorie"
+      [ngModel]="selectedCategory()"
+      (ngModelChange)="selectedCategory.set($event)"
+      aria-describedby="filtre-categorie-description"
+    >
+      <option value="all">Toutes</option>
+      <option *ngFor="let cat of categories()">{{ cat }}</option>
+    </select>
+    <p id="filtre-categorie-description" class="visually-hidden">
+      Sélectionnez une catégorie pour filtrer les articles affichés.
+    </p>
+  </div>
+</div>
+
+<!-- Chargement des articles -->
+<div *ngIf="loading(); else contenu" role="status" aria-live="polite">
+  <p>Chargement des articles...</p>
+</div>
+
+<!-- Liste des articles -->
+<ng-template #contenu>
+  <div class="articles" role="list" aria-label="Liste des articles disponibles">
+    <app-article-card
+      *ngFor="let article of filteredArticles()"
+      [article]="article"
+      (ajout)="onAjout($event)"
+      role="listitem"
+      aria-label="Article {{ article.productName }}"
+    >
+    </app-article-card>
+  </div>
+</ng-template>

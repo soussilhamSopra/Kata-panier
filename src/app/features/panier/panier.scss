@@ -1,0 +1,60 @@
+:host {
+  display: block;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fffef5;
+  color: #333;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #e6b800;
+}
+
+button[routerLink] {
+  padding: 0.5rem 1rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-bottom: 2rem;
+}
+
+button[routerLink]:hover {
+  background-color: #005fa3;
+}
+
+.panier-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.panier-total {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.panier-total-box {
+  background-color: #e6f0ff;
+  border: 2px solid #0077cc;
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  color: #0077cc;
+  font-weight: bold;
+  white-space: nowrap;
+  min-width: 200px;
+  text-align: center;
+}
+
+p {
+  font-size: 1.1rem;
+}

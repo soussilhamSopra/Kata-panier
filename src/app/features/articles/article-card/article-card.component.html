@@ -1,0 +1,47 @@
+<div class="card" role="group" aria-label="Article {{ article.productName }}">
+  <h3>{{ article.productName | nomArticle }}</h3>
+
+  <p><strong>Catégorie :</strong> {{ article.category | formatCategorie }}</p>
+  <p>
+    <strong>Prix HT :</strong> {{ article.price | currency : 'EUR' : 'symbol' : '1.2-2' : 'fr-FR' }}
+  </p>
+  <p [ngClass]="getStockClass()">
+    <strong>Stock :</strong> {{ article.quantity | quantiteRestante : quantiteDansPanier() }}
+  </p>
+  <p><strong>Importé :</strong> {{ article.isImported ? 'Oui' : 'Non' }}</p>
+  <p>
+    <strong>Prix TTC :</strong>
+    {{ article | prixTTC | currency : 'EUR' : 'symbol' : '1.2-2' : 'fr-FR' }}
+  </p>
+
+  <!-- Formulaire d'ajout au panier -->
+  <div class="actions" role="form" aria-label="Sélection de la quantité à ajouter au panier">
+    <label for="quantite-{{ article.id }}">Quantité:</label>
+    <input
+      id="quantite-{{ article.id }}"
+      type="number"
+      min="1"
+      [ngModel]="quantite()"
+      (ngModelChange)="quantite.set($event)"
+      [max]="getQuantiteRestante()"
+      (change)="validerQuantite()"
+    />
+    <button
+      aria-label="Ajouter {{ quantite() }} {{ article.productName }} au panier"
+      (click)="ajouter()"
+      [disabled]="quantiteDansPanier() >= article.quantity || quantite() > article.quantity"
+      [attr.data-tooltip]="
+        quantiteDansPanier() >= article.quantity || quantite() > article.quantity
+          ? 'Non disponible'
+          : null
+      "
+    >
+      Ajouter au panier
+    </button>
+  </div>
+
+  <!-- Message si article non disponible -->
+  <ng-template #nonDispo>
+    <p class="non-dispo" role="status" aria-live="polite">Non disponible</p>
+  </ng-template>
+</div>

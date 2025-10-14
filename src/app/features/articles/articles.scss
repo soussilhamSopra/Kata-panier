@@ -1,0 +1,84 @@
+.categories {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #d0d0d0;
+    }
+
+    &.active {
+      background-color: #007bff;
+      color: white;
+    }
+  }
+}
+
+.non-dispo {
+  color: red;
+  font-weight: bold;
+}
+
+/* Conteneur des cartes */
+.articles {
+  display: grid;
+  gap: 1rem; /* espace entre les cartes */
+  /* Mobile first : 1 carte par ligne minimum 260px */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* Desktop >= 1024px : 3 cartes par ligne */
+@media (min-width: 1024px) {
+  .articles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+app-article-card {
+  width: 100%;
+}
+:host {
+  display: block;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #000;
+}
+
+.filtre {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filtre label {
+  font-weight: bold;
+}
+
+.filtre select {
+  padding: 0.4rem;
+  border: 1px solid #0077cc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #0077cc;
+}
+.filtre-barre {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}

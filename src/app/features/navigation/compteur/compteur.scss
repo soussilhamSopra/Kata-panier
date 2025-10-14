@@ -1,0 +1,31 @@
+.bouton-panier {
+  padding: 0.6rem 1.2rem;
+  background-color: #28a745;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bouton-panier:hover {
+  background-color: #218838;
+  transform: scale(1.03);
+}
+
+.bouton-panier:active {
+  background-color: #1e7e34;
+  transform: scale(0.98);
+}
+
+.bouton-panier svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}

@@ -1,0 +1,65 @@
+:host {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.panier-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6f0ff;
+  border: 2px solid #0077cc;
+  border-radius: 6px;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.panier-item-info {
+  display: flex;
+  flex-direction: column;
+  color: #0077cc;
+  flex: 1;
+}
+
+.panier-item-info p {
+  margin: 0.2rem 0;
+  font-size: 0.95rem;
+}
+
+.panier-item-info strong {
+  font-size: 1.1rem;
+  text-decoration: underline;
+}
+
+.panier-item-actions {
+  display: flex;
+  align-items: center;
+}
+
+button.remove {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #cc0000;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button.remove:hover {
+  background-color: #a00000;
+}
+.panier-item-details {
+  display: flex;
+  flex-wrap: wrap; // utile si l’écran est petit
+  gap: 2rem; // espace horizontal entre les éléments
+  font-size: 0.95rem;
+  color: #0077cc;
+}
+
+.panier-item-details span {
+  white-space: nowrap; // empeche les sauts de ligne intempestifs
+}

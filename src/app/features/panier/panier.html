@@ -1,0 +1,27 @@
+<!-- Contenu du panier si des articles sont présents -->
+<div *ngIf="details().length > 0; else vide" role="region" aria-label="Contenu du panier">
+  <!-- Liste des articles dans le panier -->
+  <div class="panier-items" role="list" aria-label="Liste des articles dans le panier">
+    <app-panier-item *ngFor="let item of details()" [item]="item" role="listitem" />
+  </div>
+
+  <div class="panier-total" role="contentinfo" aria-label="Résumé du panier">
+    <div class="panier-total-box">
+      <span>
+        <strong>TOTAL Taxes :</strong>
+        {{ totalTaxes() | currency : 'EUR' : 'symbol' : '1.2-2' }}
+      </span>
+    </div>
+    <div class="panier-total-box">
+      <span>
+        <strong>TOTAL TTC :</strong>
+        {{ totalTTC() | currency : 'EUR' : 'symbol' : '1.2-2' }}
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- Message affiché si le panier est vide -->
+<ng-template #vide>
+  <p role="status" aria-live="polite">Votre panier est vide.</p>
+</ng-template>

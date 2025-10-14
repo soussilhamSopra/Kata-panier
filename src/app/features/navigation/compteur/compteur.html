@@ -1,0 +1,8 @@
+<button
+  class="bouton-panier"
+  [routerLink]="['/panier']"
+  aria-label="Accéder au panier, total actuel {{ total() }} articles"
+  aria-live="polite"
+>
+  Panier : {{ total() }}
+</button>

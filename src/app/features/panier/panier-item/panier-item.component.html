@@ -1,0 +1,19 @@
+<div class="panier-item" role="listitem" aria-label="Article : {{ item.nom }}">
+  <div class="panier-item-details">
+    <p><strong>Produit :</strong> {{ item.nom }}</p>
+    <p><strong>Quantité :</strong> {{ item.quantite }}</p>
+    <p><strong>Prix HT :</strong> {{ item.prixHT | currency : 'EUR' }}</p>
+    <p><strong>Taxes :</strong> {{ item.tax | currency : 'EUR' }}</p>
+    <p><strong>Prix TTC :</strong> {{ item.pTTC | currency : 'EUR' }}</p>
+  </div>
+
+  <div class="panier-item-actions">
+    <button
+      class="remove"
+      (click)="onRemove(item.id)"
+      aria-label="Retirer {{ item.nom }} du panier"
+    >
+      −
+    </button>
+  </div>
+</div>

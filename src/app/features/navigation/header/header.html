@@ -1,0 +1,27 @@
+<header
+  class="app-header"
+  role="banner"
+  aria-label="En-tête principal de l'application Kata Panier"
+>
+  <h1 class="header-title">Kata Panier</h1>
+
+  <div class="header-toolbar" role="navigation" aria-label="Barre d’outils de navigation">
+    <!-- Bouton Accueil visible uniquement sur la page panier -->
+    <button
+      *ngIf="isOnPanierPage()"
+      routerLink="/articles"
+      class="btn-retour"
+      aria-label="Retour à la page des articles"
+    >
+      Accueil
+    </button>
+
+    <!-- Bouton Panier visible uniquement sur la page articles -->
+    <app-compteur
+      *ngIf="isOnArticlesPage()"
+      class="btn-panier"
+      aria-label="Accéder au panier"
+      role="button"
+    />
+  </div>
+</header>
