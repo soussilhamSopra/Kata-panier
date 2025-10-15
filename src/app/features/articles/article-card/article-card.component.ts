@@ -40,7 +40,6 @@ registerLocaleData(localeFr);
 export class ArticleCardComponent {
   @Input() article!: Article;
   @Output() ajout = new EventEmitter<Article>();
-  classe = '';
 
   // Signal réactif pour la quantité sélectionnée par l'utilisateur
   quantite = signal(1);
