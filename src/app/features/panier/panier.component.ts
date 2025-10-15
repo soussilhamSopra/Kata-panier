@@ -9,8 +9,8 @@ import { Article } from '../../models/article';
   selector: 'app-panier',
   standalone: true,
   imports: [CommonModule, RouterModule, PanierItemComponent],
-  templateUrl: './panier.html',
-  styleUrls: ['./panier.scss'],
+  templateUrl: './panier.component.html',
+  styleUrls: ['./panier.component.scss'],
 })
 export class PanierComponent {
   panierService = inject(PanierService);
