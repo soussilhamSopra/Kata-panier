@@ -1,6 +1,5 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { Article } from '../../models/article';
-import { TaxeCalculator } from './taxCalculator';
 import { PanierItem } from '../../models/panier-item';
 
 @Injectable({ providedIn: 'root' })
@@ -9,16 +8,10 @@ export class PanierService {
   items = computed(() => this._items());
   totalCount = computed(() => this._items().reduce((sum, item) => sum + item.quantity, 0));
 
-  totalTaxes = computed(() =>
-    this._items().reduce((sum, item) => sum + TaxeCalculator.calculateTaxe(item) * item.quantity, 0)
-  );
+  totalTaxes = computed(() => this._items().reduce((sum, item) => sum + item.tax, 0));
 
-  totalTTC = computed(() =>
-    this._items().reduce(
-      (sum, item) => sum + TaxeCalculator.calculerPrixTTC(item) * item.quantity,
-      0
-    )
-  );
+  totalTTC = computed(() => this._items().reduce((sum, item) => sum + item.pTTC, 0));
+
   getPanierDetails(items: Article[]): PanierItem[] {
     return items.map((item) => {
       return {

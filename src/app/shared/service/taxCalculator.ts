@@ -29,7 +29,10 @@ export class TaxeCalculator {
   static calculateTaxe(article: Article): number {
     const rates = this.getApplicableTaxRates(article);
     const totalRate = rates.reduce((sum, r) => sum + r, 0);
-    const tax = this.roundUpToNearestFiveCents((article.price * totalRate) / 100);
+    const tax = rates
+      .map((rate) => this.roundUpToNearestFiveCents((article.price * rate) / 100))
+      .reduce((sum, t) => sum + t, 0);
+
     return tax;
   }
 
