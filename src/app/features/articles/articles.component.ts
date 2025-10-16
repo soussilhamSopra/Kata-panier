@@ -1,17 +1,25 @@
-import { Component, computed, inject, Signal, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  Signal,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ArticleService } from '../../shared/service/article.service';
-import { PanierService } from '../../shared/service/panier.service';
-import { Article } from '../../models/article';
+import { ArticleService } from '../../core/services/article.service';
+import { PanierService } from '../../core/services/panier.service';
+import { Article } from '../../core/models/article';
 import { ArticleCardComponent } from './article-card/article-card.component';
 
 @Component({
   selector: 'app-articles',
   standalone: true,
   imports: [CommonModule, FormsModule, ArticleCardComponent],
-  templateUrl: './articles.html',
-  styleUrl: './articles.scss',
+  templateUrl: './articles.component.html',
+  styleUrl: './articles.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticlesComponent {
   selectedCategory = signal('all');

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PanierComponent } from './panier.component';
-import { PanierService } from '../../shared/service/panier.service';
+import { PanierService } from '../../core/services/panier.service';
 import { signal } from '@angular/core';
-import { Article } from '../../models/article';
+import { Article } from '../../core/models/article';
 
 describe('PanierComponent', () => {
   let component: PanierComponent;

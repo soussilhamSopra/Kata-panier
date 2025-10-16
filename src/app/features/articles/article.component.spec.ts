@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ArticlesComponent } from './articles.component';
-import { ArticleService } from '../../shared/service/article.service';
-import { PanierService } from '../../shared/service/panier.service';
-import { Article } from '../../models/article';
+import { ArticleService } from '../../core/services/article.service';
+import { PanierService } from '../../core/services/panier.service';
+import { Article } from '../../core/models/article';
 import { of } from 'rxjs';
 import { signal } from '@angular/core';
 

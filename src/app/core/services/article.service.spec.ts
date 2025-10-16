@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ArticleService } from './article.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Article } from '../../models/article';
+import { Article } from '../models/article';
 
 describe('ArticleService', () => {
   let service: ArticleService;
@@ -44,14 +44,14 @@ describe('ArticleService', () => {
     httpMock.verify(); // vérifie qu'aucune requête n'est en attente
   });
 
-  it('devrait être créé', () => {
+  it('should be created', () => {
     const service = TestBed.inject(ArticleService);
     const req = httpMock.expectOne('/assets/articles.json');
     req.flush([]); // simule une réponse vide
     expect(service).toBeTruthy();
   });
 
-  it('devrait charger les articles depuis le fichier JSON', () => {
+  it('should load articles from JSON file', () => {
     const req = httpMock.expectOne('/assets/articles.json');
     expect(req.request.method).toBe('GET');
     req.flush(mockArticles); // simule la réponse HTTP
@@ -62,7 +62,7 @@ describe('ArticleService', () => {
     expect(service.isLoading()).toBeFalse();
   });
 
-  it('devrait gérer une erreur de chargement et retourner un tableau vide', () => {
+  it('should manage loading errors and return an empty array', () => {
     const req = httpMock.expectOne('/assets/articles.json');
     req.error(new ErrorEvent('Network error'));
 

@@ -1,7 +1,7 @@
-import { TaxeCalculator } from './taxCalculator';
-import { Article } from '../../models/article';
+import { TaxCalculatorService } from './tax-calculator.service';
+import { Article } from '../models/article';
 
-describe('TaxeCalculator', () => {
+describe('TaxCalculatorService', () => {
   it('should apply 0% for Food and Medecine', () => {
     const a: Article = {
       id: 1,
@@ -13,7 +13,7 @@ describe('TaxeCalculator', () => {
       tax: 0,
       pTTC: 0,
     };
-    expect(TaxeCalculator.calculateTaxe(a)).toBeCloseTo(0, 2);
+    expect(TaxCalculatorService.calculateTaxe(a)).toBeCloseTo(0, 2);
   });
 
   it('should apply 10% for Books', () => {
@@ -28,21 +28,21 @@ describe('TaxeCalculator', () => {
       pTTC: 0,
     };
     // Tax 10% => 1.249 -> arrondi aux 5 cents supérieurs = 1.25
-    expect(TaxeCalculator.calculateTaxe(a)).toBeCloseTo(1.25, 2);
+    expect(TaxCalculatorService.calculateTaxe(a)).toBeCloseTo(1.25, 2);
   });
 
-  it('should add 5% import tax', () => {
+  it('should add 20% and 5% import tax', () => {
     const a: Article = {
       id: 3,
-      productName: 'Imported bottle',
+      productName: 'USB Flash Drive 64GB',
       price: 10.0,
       quantity: 1,
       isImported: true,
-      category: 'Other',
+      category: 'Electric',
       tax: 0,
       pTTC: 0,
     };
     // 20% + 5% => taxes sur HT: 2.0 & 0.5 -> arrondi -> sum soit 2.5
-    expect(TaxeCalculator.calculateTaxe(a)).toBeCloseTo(2.5, 2);
+    expect(TaxCalculatorService.calculateTaxe(a)).toBeCloseTo(2.5, 2);
   });
 });

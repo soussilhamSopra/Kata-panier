@@ -1,9 +1,9 @@
-import { Component, computed, inject, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { PanierService } from '../../shared/service/panier.service';
+import { PanierService } from '../../core/services/panier.service';
 import { PanierItemComponent } from './panier-item/panier-item.component';
-import { Article } from '../../models/article';
+import { Article } from '../../core/models/article';
 
 @Component({
   selector: 'app-panier',
@@ -11,6 +11,7 @@ import { Article } from '../../models/article';
   imports: [CommonModule, RouterModule, PanierItemComponent],
   templateUrl: './panier.component.html',
   styleUrls: ['./panier.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PanierComponent {
   panierService = inject(PanierService);

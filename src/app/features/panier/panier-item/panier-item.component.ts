@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { PanierService } from '../../../shared/service/panier.service';
-import { Article } from '../../../models/article';
-import { PanierItem } from '../../../models/panier-item';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { PanierService } from '../../../core/services/panier.service';
+import { Article } from '../../../core/models/article';
+import { PanierItem } from '../../../core/models/panier-item';
 import { NomArticlePipe } from '../../../shared/pipes/nom-article.pipe';
 
 @Component({
@@ -10,12 +10,13 @@ import { NomArticlePipe } from '../../../shared/pipes/nom-article.pipe';
   standalone: true,
   imports: [CommonModule, NomArticlePipe],
   templateUrl: './panier-item.component.html',
-  styleUrls: ['./panier-item.scss'],
+  styleUrls: ['./panier-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PanierItemComponent {
   @Input() item!: PanierItem;
+  panierService = inject(PanierService);
 
-  constructor(private panierService: PanierService) {}
   onRemove(id: number): void {
     this.panierService.remove(id);
   }

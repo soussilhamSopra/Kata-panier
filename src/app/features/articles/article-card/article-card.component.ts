@@ -3,6 +3,7 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   EventEmitter,
@@ -13,13 +14,13 @@ import {
   signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Article } from '../../../models/article';
-import { PanierService } from '../../../shared/service/panier.service';
+import { Article } from '../../../core/models/article';
+import { PanierService } from '../../../core/services/panier.service';
 import { FormatCategoriePipe } from '../../../shared/pipes/format-categorie.pipe';
 import { QuantiteRestantePipe } from '../../../shared/pipes/quantite-restante.pipe';
 import { NomArticlePipe } from '../../../shared/pipes/nom-article.pipe';
 import { PrixTtcPipe } from '../../../shared/pipes/prix-ttc.pipe';
-import { TaxeCalculator } from '../../../shared/service/taxCalculator';
+import { TaxCalculatorService } from '../../../core/services/tax-calculator.service';
 registerLocaleData(localeFr);
 
 @Component({
@@ -34,8 +35,9 @@ registerLocaleData(localeFr);
     PrixTtcPipe,
   ],
   templateUrl: './article-card.component.html',
-  styleUrl: './article-card.scss',
-  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
+  styleUrl: './article-card.component.scss',
+
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleCardComponent {
   @Input() article!: Article;
@@ -59,8 +61,8 @@ export class ArticleCardComponent {
         id: this.article.id,
         productName: this.article.productName,
         price: this.article.price,
-        pTTC: TaxeCalculator.calculerPrixTTC(this.article),
-        tax: TaxeCalculator.calculateTaxe(this.article),
+        pTTC: TaxCalculatorService.calculerPrixTTC(this.article),
+        tax: TaxCalculatorService.calculateTaxe(this.article),
         quantity: demandée,
         category: this.article.category,
         isImported: this.article.isImported,

@@ -1,16 +1,22 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { Article } from '../../models/article';
-import { PanierItem } from '../../models/panier-item';
+import { Article } from '../models/article';
+import { PanierItem } from '../models/panier-item';
 
 @Injectable({ providedIn: 'root' })
 export class PanierService {
   private _items = signal<Article[]>([]);
   items = computed(() => this._items());
+
+  //nombre d'article dans le panier
   totalCount = computed(() => this._items().reduce((sum, item) => sum + item.quantity, 0));
 
-  totalTaxes = computed(() => this._items().reduce((sum, item) => sum + item.tax, 0));
+  totalTaxes = computed(() =>
+    this._items().reduce((sum, item) => sum + item.tax * item.quantity, 0)
+  );
 
-  totalTTC = computed(() => this._items().reduce((sum, item) => sum + item.pTTC, 0));
+  totalTTC = computed(() =>
+    this._items().reduce((sum, item) => sum + item.pTTC * item.quantity, 0)
+  );
 
   getPanierDetails(items: Article[]): PanierItem[] {
     return items.map((item) => {
@@ -26,8 +32,12 @@ export class PanierService {
   }
   add(item: Article) {
     const current = this._items();
+
+    //vérifier si l'article existe déjà dans le panier
     const existing = current.find((i) => i.id === item.id);
+
     if (existing) {
+      //modifier la quantité de l'article existant
       const updated = { ...existing, quantity: existing.quantity + item.quantity };
       const newItems = current.map((i) => (i.id === item.id ? updated : i));
       this._items.set(newItems);

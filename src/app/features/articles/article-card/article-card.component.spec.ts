@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ArticleCardComponent } from './article-card.component';
-import { PanierService } from '../../../shared/service/panier.service';
-import { Article } from '../../../models/article';
+import { PanierService } from '../../../core/services/panier.service';
+import { Article } from '../../../core/models/article';
 import { signal } from '@angular/core';
-import { TaxeCalculator } from '../../../shared/service/taxCalculator';
+import { TaxCalculatorService } from '../../../core/services/tax-calculator.service';
 
 describe('ArticleCardComponent', () => {
   let component: ArticleCardComponent;
@@ -55,8 +55,8 @@ describe('ArticleCardComponent', () => {
   });
 
   it('should call panierService.add() if quantity is valide', () => {
-    spyOn(TaxeCalculator, 'calculerPrixTTC').and.returnValue(5.0);
-    spyOn(TaxeCalculator, 'calculateTaxe').and.returnValue(0.63);
+    spyOn(TaxCalculatorService, 'calculerPrixTTC').and.returnValue(5.0);
+    spyOn(TaxCalculatorService, 'calculateTaxe').and.returnValue(0.63);
 
     component.quantite.set(2);
     component.ajouter();
