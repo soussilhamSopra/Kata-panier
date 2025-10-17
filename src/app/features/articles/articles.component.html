@@ -26,7 +26,7 @@
 <ng-template #contenu>
   <div class="articles" role="list" aria-label="Liste des articles disponibles">
     <app-article-card
-      *ngFor="let article of filteredArticles()"
+      *ngFor="let article of filteredArticles(); trackBy: trackById"
       [article]="article"
       (ajout)="onAjout($event)"
       role="listitem"

@@ -44,4 +44,8 @@ export class ArticlesComponent {
   onAjout(item: Article) {
     this.panierService.add(item);
   }
+  //Utilisé par ngFor pour charger que les élements changées
+  trackById(index: number, article: Article): number {
+    return article.id;
+  }
 }
