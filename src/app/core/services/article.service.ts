@@ -25,11 +25,7 @@ export class ArticleService {
           return of([]);
         }),
         tap((a) => {
-          const sanitized = a.map((item) => ({
-            ...item,
-            productName: item.productName,
-          }));
-          this._articles.set(sanitized);
+          this._articles.set(a);
           this._isLoading.set(false);
         })
       )
